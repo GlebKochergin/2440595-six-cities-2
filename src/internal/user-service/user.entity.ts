@@ -55,9 +55,7 @@ export class UserEntity extends defaultClasses.TimeStamps implements User {
 
   @prop({
     type: () => String,
-    required: true,
-    minlength: [6, 'Min length for password is 6'],
-    maxlength: [12, 'Max length for password is 12']
+    required: true
   })
   private password?: string;
 

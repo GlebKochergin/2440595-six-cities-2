@@ -19,6 +19,7 @@ export const MAX_COUNT_ROOM = 8;
 export const MIN_NAME_LENGTH = 10;
 export const MAX_NAME_LENGTH = 10;
 export const IMAGES_COUNT = 6;
+export const MAX_PREVIEW_IMAGE_LENGTH = 256;
 export const FIRST_WEEK_DAY = 1;
 export const LAST_WEEK_DAY = 7;
 export const DEFAULT_AVATAR_FILE_NAME = 'default-avatar.jpg';

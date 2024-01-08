@@ -19,20 +19,20 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiVGhvbWFzIE11bGxlciIsImVtYWlsIjoidGhvbWFzQGdtYWlsLnJ1IiwiaWQiOiI2NTRiMWJmNmNhNGQzOGE1ZTcxZDViMGQiLCJpYXQiOjE2OTk0MjE1MTgsImV4cCI6MTY5OTU5NDMxOH0.1NFnSjcfwTl44kqfeLsIm58uFkxCdswcK8Pde_QpAPk
 
 {
-  "title": "Оффер для комментариев от ТОМАСА",
+  "name": "Оффер для комментариев от ТОМАСА",
   "description": "Любое описание, просто текст",
-  "postDate": "2023-10-26T09:21:42.000Z",
+  "publicationDate": "2023-10-26T09:21:42.000Z",
   "city": "Cologne",
-  "preview": "modern-flat.jpg",
-  "pictures": ["photo-1.jpg", "photo-2.jpg", "photo-3.jpg", "photo-4.jpg", "photo-5.jpg", "photo-6.jpg"],
-  "isPremium": false,
+  "previewImage": "modern-flat.jpg",
+  "images": ["photo-1.jpg", "photo-2.jpg", "photo-3.jpg", "photo-4.jpg", "photo-5.jpg", "photo-6.jpg"],
+  "premium": false,
   "isFavorite": true,
   "rating": 2,
-  "type": "Apartment",
-  "roomsAmount": 2,
-  "guestsAmount": 2,
-  "price": 2800,
-  "options": [],
+  "housingType": "Apartment",
+  "roomCount": 2,
+  "guestCount": 2,
+  "cost": 2800,
+  "facilities": [],
   "commentCount": 0,
   "coordinates": [51.225402, 6.776314]
 }
