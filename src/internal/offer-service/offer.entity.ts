@@ -2,6 +2,15 @@ import typegoose, {defaultClasses, getModelForClass, Ref, Severity} from '@typeg
 import {City, Facility, Housing, Coordinates} from '../types.js';
 import {UserEntity} from '../user-service/user.entity.js';
 import mongoose from 'mongoose';
+import {
+  IMAGES_COUNT,
+  MAX_COST, MAX_COUNT_ROOM,
+  MAX_DESCRIPTION_LENGTH, MAX_GUEST_COUNT, MAX_NAME_LENGTH,
+  MAX_RATING,
+  MIN_COST, MIN_COUNT_ROOM,
+  MIN_DESCRIPTION_LENGTH, MIN_GUEST_COUNT, MIN_NAME_LENGTH,
+  MIN_RATING
+} from '../helpers.js';
 
 const {prop, modelOptions} = typegoose;
 
@@ -31,8 +40,8 @@ export class OfferEntity extends defaultClasses.TimeStamps {
   @prop({
     type: () => Number,
     required: true,
-    min: [100, 'Min cost is 100'],
-    max: [100000, 'Max cost is 100000']
+    min: [MIN_COST, 'Min cost is 100'],
+    max: [MAX_COST, 'Max cost is 100000']
   })
   public cost!: number;
 
@@ -40,8 +49,8 @@ export class OfferEntity extends defaultClasses.TimeStamps {
     type: () => String,
     required: true,
     trim: true,
-    minlength: [20, 'Min length for description is 20'],
-    maxlength: [1024, 'Max length for description is 1024']
+    minlength: [MIN_DESCRIPTION_LENGTH, 'Min length for description is 20'],
+    maxlength: [MAX_DESCRIPTION_LENGTH, 'Max length for description is 1024']
   })
   public description!: string;
 
@@ -55,8 +64,8 @@ export class OfferEntity extends defaultClasses.TimeStamps {
   @prop({
     type: () => Number,
     required: true,
-    min: [1, 'Min count of guests is 1'],
-    max: [10, 'Max count of guests is 10']
+    min: [MIN_GUEST_COUNT, 'Min count of guests is 1'],
+    max: [MAX_GUEST_COUNT, 'Max count of guests is 10']
   })
   public guestCount!: number;
 
@@ -69,8 +78,8 @@ export class OfferEntity extends defaultClasses.TimeStamps {
 
   @prop({
     type: () => [String],
-    minCount: [6, 'Images should be 6'],
-    maxCount: [6, 'Images should be 6']
+    minCount: [IMAGES_COUNT, 'Images should be 6'],
+    maxCount: [IMAGES_COUNT, 'Images should be 6']
   })
   public images!: string[];
 
@@ -78,8 +87,8 @@ export class OfferEntity extends defaultClasses.TimeStamps {
     type: () => String,
     required: true,
     trim: true,
-    minlength: [10, 'Min length for name is 10'],
-    maxlength: [100, 'Max length for name is 15']
+    minlength: [MIN_NAME_LENGTH, 'Min length for name is 10'],
+    maxlength: [MAX_NAME_LENGTH, 'Max length for name is 15']
   })
   public name!: string;
 
@@ -97,7 +106,8 @@ export class OfferEntity extends defaultClasses.TimeStamps {
   public premium!: boolean;
 
   @prop({
-    type: () => String
+    type: () => String,
+    default: ''
   })
   public previewImage!: string;
 
@@ -109,16 +119,16 @@ export class OfferEntity extends defaultClasses.TimeStamps {
   @prop({
     type: () => Number,
     default: 1,
-    min: [1, 'Min rating is 1'],
-    max: [5, 'Max rating is 5']
+    min: [MIN_RATING, 'Min rating is 1'],
+    max: [MAX_RATING, 'Max rating is 5']
   })
   public rating!: number;
 
   @prop({
     type: () => Number,
     required: true,
-    min: [1, 'Min room count is 1'],
-    max: [8, 'Max room count is 8']
+    min: [MIN_COUNT_ROOM, 'Min room count is 1'],
+    max: [MAX_COUNT_ROOM, 'Max room count is 8']
   })
   public roomCount!: number;
 
