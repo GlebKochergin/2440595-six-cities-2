@@ -19,13 +19,13 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImdsZWJrQGdtYWlsLnJ1IiwiaWQiOiI2NTljNTAxOWUxYWJmOWY1MGM0OTgwMjkiLCJpYXQiOjE3MDQ3NDI5NDEsImV4cCI6MTcwNDkxNTc0MX0.hTaAEqdWrRrOEvl8uyUV5EsnNMPHC_z7tJ5b8rQdoR0
 
 {
-  "name": "Новый оффер 1",
-  "description": "Описание оффера 1",
-  "publicationDate": "2024-01-8T09:21:42.000Z",
+  "name": "Мой оффер",
+  "description": "Описание оффера 1 ГлебГлебГлеб",
+  "publicationDate": "2024-01-08T09:21:42.000Z",
   "city": "Cologne",
   "previewImage": "preview-image.jpg",
   "images": ["image1.jpg", "image2.jpg", "image3.jpg", "image4.jpg", "image5.jpg", "image6.jpg"],
-  "premium": false,
+  "premium": true,
   "favorite": true,
   "rating": 2,
   "housingType": "Apartment",
@@ -59,13 +59,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImdsZWJrQGdtYWlsLnJ1Iiwia
 ###
 
 ## Добавить оффер в избранное
-POST http://localhost:4000/offers/favorites/659c50b0e1abf9f50c49802e HTTP/1.1
+POST http://localhost:4000/offers/favorites/659c54781e36b1135ae5297e HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImdsZWJrQGdtYWlsLnJ1IiwiaWQiOiI2NTljNTAxOWUxYWJmOWY1MGM0OTgwMjkiLCJpYXQiOjE3MDQ3NDI5NDEsImV4cCI6MTcwNDkxNTc0MX0.hTaAEqdWrRrOEvl8uyUV5EsnNMPHC_z7tJ5b8rQdoR0
 ###
 
 ## Удалить оффер из избранного
-DELETE http://localhost:4000/offers/654871a654427e61077adeba/favorites HTTP/1.1
+DELETE http://localhost:4000/offers/favorites/659c54781e36b1135ae5297e HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImdsZWJrQGdtYWlsLnJ1IiwiaWQiOiI2NTljNTAxOWUxYWJmOWY1MGM0OTgwMjkiLCJpYXQiOjE3MDQ3NDI5NDEsImV4cCI6MTcwNDkxNTc0MX0.hTaAEqdWrRrOEvl8uyUV5EsnNMPHC_z7tJ5b8rQdoR0
 ###

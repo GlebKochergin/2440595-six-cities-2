@@ -13,6 +13,7 @@ import {OfferServiceInterface} from '../offer-service/offer-service.interface.js
 import {PrivateRouteMiddleware} from '../../middleware/private.route.middleware.js';
 import {ConfigInterface} from '../../config/config.interface.js';
 import {ConfigSchema} from '../../config/config.schema.js';
+import {ValidateObjectIdMiddleware} from '../../middleware/object-id.validate.middleware.js';
 
 
 @injectable()
@@ -35,6 +36,21 @@ export default class CommentController extends Controller {
         new DocumentExistsMiddleware(this.offerService, 'Offer', 'offerId')
       ]
     });
+    this.addRoute({
+      path: '/:offerId',
+      method: HttpMethod.Get,
+      handler: this.getComments,
+      middlewares: [
+        new ValidateObjectIdMiddleware('offerId'),
+        new DocumentExistsMiddleware(this.offerService, 'Offer', 'offerId'),
+      ],
+    });
+  }
+
+  public async getComments({ params }: Request, res: Response): Promise<void> {
+    const comments = await this.commentService.findByOfferId(params.offerId);
+
+    this.ok(res, fillDTO(CommentRdo, comments));
   }
 
   public async create({body, params, user}: Request<ParamsOffer>, res: Response): Promise<void> {
