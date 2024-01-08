@@ -38,8 +38,7 @@ export default class UserService implements UserServiceInterface {
     }
 
     return this.offerModel
-      .find({_id: { $in: offers.favorite }})
-      .populate('offerId');
+      .find({_id: { $in: offers.favorite }});
   }
 
   public async findByEmail(email: string): Promise<DocumentType<UserEntity> | null> {

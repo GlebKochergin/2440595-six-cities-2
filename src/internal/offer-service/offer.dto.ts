@@ -12,7 +12,7 @@ import {
   Min,
   MinLength
 } from 'class-validator';
-import {IMAGES_COUNT, MAX_PREVIEW_IMAGE_LENGTH} from '../helpers';
+import {IMAGES_COUNT, MAX_PREVIEW_IMAGE_LENGTH} from '../helpers.js';
 
 export default class CreateOfferDto {
   @MinLength(10, {message: 'Min length for name is 10'})
