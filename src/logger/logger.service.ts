@@ -1,4 +1,4 @@
-import { LoggerInterface } from './logger.interface';
+import { LoggerInterface } from './logger.interface.js';
 import { injectable } from 'inversify';
 
 @injectable()

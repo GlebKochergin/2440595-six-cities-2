@@ -22,7 +22,7 @@ import UploadImageResponse from './upload.image.response.js';
 import {RequestBody, RequestParams} from '../../http/http.requests.js';
 import {HttpError} from '../../http/http.error.js';
 import {StatusCodes} from 'http-status-codes';
-import {FullOfferRdo} from './full-offer.rdo';
+import {FullOfferRdo} from './full-offer.rdo.js';
 
 @injectable()
 export default class OfferController extends Controller {

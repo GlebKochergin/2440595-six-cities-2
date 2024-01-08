@@ -1,11 +1,11 @@
 import {NextFunction, Request, Response} from 'express';
 import {inject, injectable} from 'inversify';
 import {StatusCodes} from 'http-status-codes';
-import {AppComponent} from '../internal/types';
-import {LoggerInterface} from '../logger/logger.interface';
-import {HttpError} from './http.error';
-import {createErrorObject} from '../internal/helpers';
-import {ExceptionFilter} from './exception-filter.interface';
+import {AppComponent} from '../internal/types.js';
+import {LoggerInterface} from '../logger/logger.interface.js';
+import {HttpError} from './http.error.js';
+import {createErrorObject} from '../internal/helpers.js';
+import {ExceptionFilter} from './exception-filter.interface.js';
 
 
 @injectable()
