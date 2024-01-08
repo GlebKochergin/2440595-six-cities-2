@@ -1,13 +1,13 @@
 import {injectable} from 'inversify';
 import {Response, Router} from 'express';
 import {StatusCodes} from 'http-status-codes';
-import {LoggerInterface} from '../logger/logger.interface.js';
-import {RouteInterface} from '../../internal/types.js';
-import {ControllerInterface} from './controller.interface.js';
+import {LoggerInterface} from '../logger/logger.interface';
+import {RouteInterface} from '../internal/types';
+import {ControllerInterface} from './controller.interface';
 import asyncHandler from 'express-async-handler';
-import {ConfigInterface} from '../config/config.interface.js';
-import {ConfigSchema} from '../config/config.schema.js';
-import {getFullServerPath, transformObject, STATIC_RESOURCE_FIELDS} from '../../internal/helpers.js';
+import {ConfigInterface} from '../config/config.interface';
+import {ConfigSchema} from '../config/config.schema';
+import {getFullServerPath, transformObject, STATIC_RESOURCE_FIELDS} from '../internal/helpers';
 
 @injectable()
 export abstract class Controller implements ControllerInterface {

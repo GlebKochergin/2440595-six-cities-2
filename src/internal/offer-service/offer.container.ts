@@ -4,7 +4,7 @@ import OfferService from './offer.service.js';
 import {OfferEntity, OfferModel} from './offer.entity.js';
 import {OfferServiceInterface} from './offer-service.interface.js';
 import { AppComponent } from '../types.js';
-import {Controller} from '../../cli-application/controller/controller.abstract.js';
+import {Controller} from '../../controller/controller.abstract.js';
 import OfferController from '../offer-service/offer.controller.js';
 
 export function createOfferContainer() {

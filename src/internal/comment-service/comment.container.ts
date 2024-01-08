@@ -4,7 +4,7 @@ import {CommentEntity, CommentModel} from './comment.entity.js';
 import {CommentServiceInterface} from './comment-service.interface.js';
 import CommentService from './comment.service.js';
 import {AppComponent} from '../types.js';
-import {ControllerInterface} from '../../cli-application/controller/controller.interface.js';
+import {ControllerInterface} from '../../controller/controller.interface.js';
 import CommentController from './comment.controller.js';
 
 export function createCommentContainer() {

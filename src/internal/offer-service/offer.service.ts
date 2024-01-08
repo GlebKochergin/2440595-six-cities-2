@@ -4,7 +4,7 @@ import {DocumentType, types} from '@typegoose/typegoose';
 import {OfferEntity} from './offer.entity.js';
 import {OfferServiceInterface} from './offer-service.interface.js';
 import {AppComponent} from '../types.js';
-import {LoggerInterface} from '../../cli-application/logger/logger.interface.js';
+import {LoggerInterface} from '../../logger/logger.interface.js';
 import {SortType} from '../types.js';
 import UpdateOfferDto from './update-offer.dto.js';
 

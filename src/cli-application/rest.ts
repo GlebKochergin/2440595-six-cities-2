@@ -1,14 +1,14 @@
-import { LoggerInterface } from './logger/logger.interface.js';
-import { ConfigInterface } from './config/config.interface.js';
-import { ConfigSchema } from './config/config.schema.js';
+import { LoggerInterface } from '../logger/logger.interface.js';
+import { ConfigInterface } from '../config/config.interface.js';
+import { ConfigSchema } from '../config/config.schema.js';
 import {inject, injectable} from 'inversify';
 import {AppComponent} from '../internal/types.js';
-import {DatabaseClientInterface} from './db-client/database-client.interface.js';
+import {DatabaseClientInterface} from '../db-client/database-client.interface.js';
 import {getConnectionString} from '../internal/helpers.js';
 import express, { Express } from 'express';
-import {ControllerInterface} from './controller/controller.interface.js';
-import {ExceptionFilter} from './http/exception-filter.interface.js';
-import {AuthenticateMiddleware} from '../cli-application/middleware/authenticate.middleware.js';
+import {ControllerInterface} from '../controller/controller.interface.js';
+import {ExceptionFilter} from '../http/exception-filter.interface.js';
+import {AuthenticateMiddleware} from '../middleware/authenticate.middleware.js';
 
 @injectable()
 export default class RestApplication {

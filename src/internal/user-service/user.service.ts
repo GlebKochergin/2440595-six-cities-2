@@ -3,7 +3,7 @@ import {DocumentType} from '@typegoose/typegoose/lib/types.js';
 import UserDto from './user.dto.js';
 import {inject, injectable} from 'inversify';
 import { AppComponent } from '../types.js';
-import {LoggerInterface} from '../../cli-application/logger/logger.interface.js';
+import {LoggerInterface} from '../../logger/logger.interface.js';
 import {types} from '@typegoose/typegoose';
 import {UserServiceInterface} from './user-service.interface.js';
 import {OfferEntity} from '../offer-service/offer.entity.js';

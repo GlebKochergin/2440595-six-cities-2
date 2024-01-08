@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
-import { MiddlewareInterface } from './middleware.interface.js';
+import { MiddlewareInterface } from './middleware.interface';
 import { NextFunction, Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
-import { HttpError } from '../http/http.error.js';
+import { HttpError } from '../http/http.error';
 
 const { Types } = mongoose;
 

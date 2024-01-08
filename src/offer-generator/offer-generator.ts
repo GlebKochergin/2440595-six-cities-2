@@ -1,7 +1,7 @@
-import {generateRandomNumber, getRandomItem, getRandomItems} from '../../internal/helpers.js';
-import {MockData} from '../../internal/types.js';
+import {generateRandomNumber, getRandomItem, getRandomItems} from '../internal/helpers';
+import {MockData} from '../internal/types';
 import dayjs from 'dayjs';
-import {UserType, Facility, Housing, City} from '../../internal/types.js';
+import {UserType, Facility, Housing, City} from '../internal/types';
 
 export interface OfferGeneratorInterface {
   generate(): string;

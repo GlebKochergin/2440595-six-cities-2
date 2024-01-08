@@ -2,8 +2,8 @@ import { jwtVerify } from 'jose';
 import { createSecretKey } from 'node:crypto';
 import { NextFunction, Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
-import { HttpError } from '../http/http.error.js';
-import { MiddlewareInterface } from './middleware.interface.js';
+import { HttpError } from '../http/http.error';
+import { MiddlewareInterface } from './middleware.interface';
 
 
 export const BLACK_LIST_TOKENS: Set<string> = new Set();

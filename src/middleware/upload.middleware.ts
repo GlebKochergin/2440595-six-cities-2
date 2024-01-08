@@ -2,7 +2,7 @@ import { nanoid } from 'nanoid';
 import multer, { diskStorage } from 'multer';
 import { extension } from 'mime-types';
 import { NextFunction, Request, Response } from 'express';
-import { MiddlewareInterface } from './middleware.interface.js';
+import { MiddlewareInterface } from './middleware.interface';
 
 export class UploadMiddleware implements MiddlewareInterface {
   constructor(

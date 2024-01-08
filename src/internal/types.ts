@@ -1,6 +1,6 @@
 import {NextFunction, Request, Response} from 'express';
 import {ParamsDictionary} from 'express-serve-static-core';
-import {MiddlewareInterface} from '../cli-application/middleware/middleware.interface.js';
+import {MiddlewareInterface} from '../middleware/middleware.interface.js';
 
 export enum City {
   Paris = 'Paris',
