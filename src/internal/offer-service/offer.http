@@ -19,7 +19,7 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImdsZWJrQGdtYWlsLnJ1IiwiaWQiOiI2NTljNTAxOWUxYWJmOWY1MGM0OTgwMjkiLCJpYXQiOjE3MDQ3NDI5NDEsImV4cCI6MTcwNDkxNTc0MX0.hTaAEqdWrRrOEvl8uyUV5EsnNMPHC_z7tJ5b8rQdoR0
 
 {
-  "name": "Мой оффер",
+  "name": "Мой оффер1",
   "description": "Описание оффера 1 ГлебГлебГлеб",
   "publicationDate": "2024-01-08T09:21:42.000Z",
   "city": "Cologne",
