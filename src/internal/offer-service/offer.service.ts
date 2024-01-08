@@ -4,7 +4,7 @@ import {DocumentType, types} from '@typegoose/typegoose';
 import {OfferEntity} from './offer.entity.js';
 import {OfferServiceInterface} from './offer-service.interface.js';
 import {AppComponent} from '../types.js';
-import {LoggerInterface} from '../../cli-application/logger/logger.interface.js';
+import {LoggerInterface} from '../../logger/logger.interface.js';
 import {SortType} from '../types.js';
 import UpdateOfferDto from './update-offer.dto.js';
 
@@ -81,5 +81,15 @@ export default class OfferService implements OfferServiceInterface {
   public async exists(documentId: string): Promise<boolean> {
     return (await this.offerModel
       .exists({_id: documentId})) !== null;
+  }
+
+  public async addImage(offerId: string, image: string): Promise<void> {
+    await this.offerModel
+      .updateOne({_id: offerId}, {$addToSet: {images: image}});
+  }
+
+  public async removeImage(offerId: string, image: string): Promise<void> {
+    await this.offerModel
+      .updateOne({_id: offerId}, {$pull: {images: image}});
   }
 }

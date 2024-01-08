@@ -3,7 +3,7 @@ import mongoose, {Mongoose} from 'mongoose';
 import {setTimeout} from 'node:timers/promises';
 import {DatabaseClientInterface} from './database-client.interface.js';
 import {LoggerInterface} from '../logger/logger.interface.js';
-import {AppComponent} from '../../internal/types.js';
+import {AppComponent} from '../internal/types.js';
 
 const RETRY_COUNT = 5;
 const RETRY_TIMEOUT = 1000;

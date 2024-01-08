@@ -8,8 +8,13 @@ export class FavoriteFullOfferDto {
   @Expose()
     name!: string;
 
-  @Expose()
+  @Expose({
+    name: 'createdAt'
+  })
     publicationDate!: Date;
+
+  @Expose()
+    description!: string;
 
   @Expose()
     city!: City;

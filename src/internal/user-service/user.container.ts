@@ -4,7 +4,7 @@ import UserService from './user.service.js';
 import {UserEntity, UserModel} from './user.entity.js';
 import {types} from '@typegoose/typegoose';
 import {AppComponent} from '../types.js';
-import {Controller} from '../../cli-application/controller/controller.abstract.js';
+import {Controller} from '../../controller/controller.abstract.js';
 import UserController from './user.controller.js';
 
 export function createUserContainer() {

@@ -13,12 +13,18 @@
     "previewImages": [
       "previewImage1.jpg",
       "previewImage2.jpg",
-      "previewImage3.jpg"
+      "previewImage3.jpg",
+      "previewImage4.jpg",
+      "previewImage5.jpg",
+      "previewImage6.jpg"
     ],
     "images": [
       "image1.jpg",
       "image2.jpg",
-      "image3.jpg"
+      "image3.jpg",
+      "image4.jpg",
+      "image5.jpg",
+      "image6.jpg"
     ],
     "coordinates": {
       "latitude": [

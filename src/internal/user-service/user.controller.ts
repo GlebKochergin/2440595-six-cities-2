@@ -1,34 +1,35 @@
 import { inject, injectable } from 'inversify';
 import { Request, Response } from 'express';
 import {AppComponent} from '../types.js';
-import {Controller} from '../../cli-application/controller/controller.abstract.js';
-import {LoggerInterface} from '../../cli-application/logger/logger.interface.js';
+import {Controller} from '../../controller/controller.abstract.js';
+import {LoggerInterface} from '../../logger/logger.interface.js';
 import {HttpMethod} from '../types.js';
 import {createJWT, JWT_ALGORITHM, fillDTO} from '../helpers.js';
 import {UserServiceInterface} from './user-service.interface.js';
 import CreateUserDto from './user.dto.js';
-import {HttpError} from '../../cli-application/http/http.error.js';
+import {HttpError} from '../../http/http.error.js';
 import {StatusCodes} from 'http-status-codes';
-import {ConfigInterface} from '../../cli-application/config/config.interface.js';
-import {ConfigSchema} from '../../cli-application/config/config.schema.js';
+import {ConfigInterface} from '../../config/config.interface.js';
+import {ConfigSchema} from '../../config/config.schema.js';
 import UserRdo from './user.rdo.js';
 import LoginUserDto from './login-user.dto.js';
-import {ValidateObjectIdMiddleware} from '../../cli-application/middleware/object-id.validate.middleware.js';
-import {UploadMiddleware} from '../../cli-application/middleware/upload.middleware.js';
+import {ValidateObjectIdMiddleware} from '../../middleware/object-id.validate.middleware.js';
+import {UploadMiddleware} from '../../middleware/upload.middleware.js';
 import EnteredUserRdo from './entered.user.rdo.js';
-import {BLACK_LIST_TOKENS} from '../../cli-application/middleware/authenticate.middleware.js';
-import {PrivateRouteMiddleware} from '../../cli-application/middleware/private.route.middleware.js';
-import {DtoValidateMiddleware} from '../../cli-application/middleware/dto.validate.middleware.js';
+import {BLACK_LIST_TOKENS} from '../../middleware/authenticate.middleware.js';
+import {PrivateRouteMiddleware} from '../../middleware/private.route.middleware.js';
+import {DtoValidateMiddleware} from '../../middleware/dto.validate.middleware.js';
 import {LoginUserRequest} from './login-user-request.js';
+import UploadAvatarResponse from './upload.avatar.response.js';
 
 
 @injectable()
 export default class UserController extends Controller {
   constructor(@inject(AppComponent.LoggerInterface) logger: LoggerInterface,
               @inject(AppComponent.UserServiceInterface) private readonly userService: UserServiceInterface,
-              @inject(AppComponent.ConfigInterface) private readonly configService: ConfigInterface<ConfigSchema>
+              @inject(AppComponent.ConfigInterface) protected readonly configService: ConfigInterface<ConfigSchema>
   ) {
-    super(logger);
+    super(logger, configService);
 
     this.logger.info('Register routes for CategoryController…');
 
@@ -110,10 +111,10 @@ export default class UserController extends Controller {
         id: user.id
       }
     );
-    this.ok(res, fillDTO(EnteredUserRdo, {
-      email: user.email,
+    this.ok(res, {
+      ...fillDTO(EnteredUserRdo, user),
       token
-    }));
+    });
   }
 
   public async checkAuthenticate({user: {email}}: Request, res: Response) {
@@ -147,6 +148,9 @@ export default class UserController extends Controller {
   }
 
   public async uploadAvatar(req: Request, res: Response) {
-    this.created(res, {filepath: req.file?.path});
+    const {userId} = req.params;
+    const uploadFile = {avatar: req.file?.filename};
+    await this.userService.updateById(userId, uploadFile);
+    this.created(res, fillDTO(UploadAvatarResponse, uploadFile));
   }
 }

@@ -1,8 +1,10 @@
 import { City, Housing, Facility, Coordinates } from '../types.js';
 import {
+  ArrayMinSize,
+  ArrayMaxSize,
   ArrayNotEmpty,
   IsArray,
-  IsBoolean,
+  IsBoolean, IsDateString,
   IsEnum,
   IsObject,
   Max,
@@ -10,6 +12,7 @@ import {
   Min,
   MinLength
 } from 'class-validator';
+import {IMAGES_COUNT, MAX_PREVIEW_IMAGE_LENGTH} from '../helpers.js';
 
 export default class CreateOfferDto {
   @MinLength(10, {message: 'Min length for name is 10'})
@@ -20,11 +23,26 @@ export default class CreateOfferDto {
   @MaxLength(1024, {message: 'Max length for description is 1024'})
   public description!: string;
 
+  @IsDateString({}, { message: 'postDate must be a valid ISO string' })
+  public publicationDate!: Date;
+
   @IsEnum(City, {message: 'type must be one of the city'})
   public city!: City;
 
+  @MaxLength(MAX_PREVIEW_IMAGE_LENGTH, { message: 'Maximum preview length is 256' })
+  public previewImage!: string;
+
+  @IsArray({ message: 'pictures must be an array' })
+  @ArrayMinSize(IMAGES_COUNT, { message: 'Should be 6 images' })
+  @ArrayMaxSize(IMAGES_COUNT, { message: 'Should be 6 images' })
+  public images!: string[];
+
   @IsBoolean({message: 'field premium must be boolean'})
   public premium!: boolean;
+
+  @Min(1, {message: 'rating must be an integer from 1 to 5'})
+  @Max(5, {message: 'rating must be an integer from 1 to 5'})
+  public rating!: number;
 
   @IsEnum(Housing, {message: 'type must be one of the housing types'})
   public housingType!: Housing;

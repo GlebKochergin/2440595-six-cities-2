@@ -1,9 +1,9 @@
 import {CliCommandInterface} from './cli-command.interface';
 import {MockData} from '../../internal/types.js';
-import OfferGenerator from '../../cli-application/offer-generator/offer-generator.js';
-import TSVFileWriter from '../file-writer/file-write.js';
-import ConsoleLoggerService from '../logger/logger.service.js';
-import {LoggerInterface} from '../logger/logger.interface.js';
+import OfferGenerator from '../../offer-generator/offer-generator.js';
+import TSVFileWriter from '../../file-writer/file-write.js';
+import ConsoleLoggerService from '../../logger/logger.service.js';
+import {LoggerInterface} from '../../logger/logger.interface.js';
 
 export default class GenerateCommand implements CliCommandInterface {
   public readonly name = '--generate';

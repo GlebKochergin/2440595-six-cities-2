@@ -3,23 +3,26 @@ import {DocumentType} from '@typegoose/typegoose/lib/types.js';
 import UserDto from './user.dto.js';
 import {inject, injectable} from 'inversify';
 import { AppComponent } from '../types.js';
-import {LoggerInterface} from '../../cli-application/logger/logger.interface.js';
+import {LoggerInterface} from '../../logger/logger.interface.js';
 import {types} from '@typegoose/typegoose';
 import {UserServiceInterface} from './user-service.interface.js';
 import {OfferEntity} from '../offer-service/offer.entity.js';
 import LoginUserDto from './login-user.dto.js';
+import UpdateUserDto from './update.user.dto.js';
+import {DEFAULT_AVATAR_FILE_NAME} from '../helpers.js';
 
 @injectable()
 export default class UserService implements UserServiceInterface {
 
   constructor(
     @inject(AppComponent.LoggerInterface) private readonly logger: LoggerInterface,
-    @inject(AppComponent.UserModel) private readonly userModel: types.ModelType<UserEntity>
+    @inject(AppComponent.UserModel) private readonly userModel: types.ModelType<UserEntity>,
+    @inject(AppComponent.OfferModel) private readonly offerModel: types.ModelType<OfferEntity>
   ) {
   }
 
   public async create(dto: UserDto, salt: string): Promise<DocumentType<UserEntity>> {
-    const user = new UserEntity({...dto, avatarPath: ''});
+    const user = new UserEntity({...dto, avatarPath: DEFAULT_AVATAR_FILE_NAME});
     user.setPassword(dto.password, salt);
 
     const result = await this.userModel.create(user);
@@ -34,9 +37,8 @@ export default class UserService implements UserServiceInterface {
       return [];
     }
 
-    return this.userModel
-      .find({_id: { $in: offers.favorite }})
-      .populate('offerId');
+    return this.offerModel
+      .find({_id: { $in: offers.favorite }});
   }
 
   public async findByEmail(email: string): Promise<DocumentType<UserEntity> | null> {
@@ -71,11 +73,23 @@ export default class UserService implements UserServiceInterface {
     return null;
   }
 
-  public async addToFavoritesById(userId: string, offerId: string): Promise<DocumentType<OfferEntity>[] | null> {
-    return this.userModel.findByIdAndUpdate(userId, {$push: {favorite: offerId}, new: true});
+  public async addToFavoritesById(userId: string, offerId: string): Promise<void> {
+    await this.userModel.updateOne(
+      {_id: userId},
+      { $addToSet: { favorite: offerId } }
+    );
   }
 
-  public async removeFromFavoritesById(userId: string, offerId: string): Promise<DocumentType<OfferEntity>[] | null> {
-    return this.userModel.findByIdAndUpdate(userId, {$pull: {favorite: offerId}, new: true});
+  public async removeFromFavoritesById(userId: string, offerId: string): Promise<void> {
+    await this.userModel.updateOne(
+      {_id: userId},
+      { $pull: { favorite: offerId } }
+    );
+  }
+
+  public async updateById(userId: string, dto: UpdateUserDto): Promise<DocumentType<UserEntity> | null> {
+    return this.userModel
+      .findByIdAndUpdate(userId, dto, {new: true})
+      .exec();
   }
 }

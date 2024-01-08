@@ -1,18 +1,18 @@
 import {CliCommandInterface} from './cli-command.interface.js';
-import {TSVFileReader} from '../file-reader/file-reader.js';
+import {TSVFileReader} from '../../file-reader/file-reader.js';
 import {getErrorMessage, getConnectionString} from '../../internal/helpers.js';
 import chalk from 'chalk';
 import {createOffer} from '../../internal/helpers.js';
 import {UserServiceInterface} from '../../internal/user-service/user-service.interface.js';
 import {OfferServiceInterface} from '../../internal/offer-service/offer-service.interface.js';
-import {DatabaseClientInterface} from '../db-client/database-client.interface.js';
-import {LoggerInterface} from '../logger/logger.interface.js';
-import ConsoleLoggerService from '../logger/logger.service.js';
+import {DatabaseClientInterface} from '../../db-client/database-client.interface.js';
+import {LoggerInterface} from '../../logger/logger.interface.js';
+import ConsoleLoggerService from '../../logger/logger.service.js';
 import OfferService from '../../internal/offer-service/offer.service.js';
 import {OfferModel} from '../../internal/offer-service/offer.entity.js';
 import UserService from '../../internal/user-service/user.service.js';
 import {UserModel} from '../../internal/user-service/user.entity.js';
-import MongoClientService from '../db-client/mongo-client.service.js';
+import MongoClientService from '../../db-client/mongo-client.service.js';
 import {Offer} from '../../internal/types.js';
 import {DEFAULT_USER_PASSWORD, DEFAULT_DB_PORT} from '../../internal/helpers.js';
 
@@ -31,7 +31,7 @@ export default class ImportCommand implements CliCommandInterface {
 
     this.logger = new ConsoleLoggerService();
     this.offerService = new OfferService(this.logger, OfferModel);
-    this.userService = new UserService(this.logger, UserModel);
+    this.userService = new UserService(this.logger, UserModel, OfferModel);
     this.databaseService = new MongoClientService(this.logger);
   }
 

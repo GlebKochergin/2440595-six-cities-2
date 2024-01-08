@@ -1,7 +1,7 @@
 import { StatusCodes } from 'http-status-codes';
 import { NextFunction, Request, Response } from 'express';
 import { MiddlewareInterface } from './middleware.interface.js';
-import {DocumentExistsInterface} from '../../internal/types.js';
+import {DocumentExistsInterface} from '../internal/types.js';
 import {HttpError} from '../http/http.error.js';
 
 export class DocumentExistsMiddleware implements MiddlewareInterface {
